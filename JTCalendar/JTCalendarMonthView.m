@@ -81,10 +81,12 @@
     CGFloat weeksToDisplay;
     
     if(cacheLastWeekMode){
-        weeksToDisplay = 2.;
+//        weeksToDisplay = 2.;
+        weeksToDisplay = 1;
     }
     else{
-        weeksToDisplay = (CGFloat)(WEEKS_TO_DISPLAY + 1); // + 1 for weekDays
+//        weeksToDisplay = (CGFloat)(WEEKS_TO_DISPLAY + 1); // + 1 for weekDays
+        weeksToDisplay = (CGFloat)(WEEKS_TO_DISPLAY);
     }
     
     CGFloat y = 0;
