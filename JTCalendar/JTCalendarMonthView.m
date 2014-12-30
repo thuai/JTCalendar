@@ -52,10 +52,11 @@
 {    
     NSMutableArray *views = [NSMutableArray new];
     
-    {
+    // comment beacuse don't need display weekdays
+    /*{
         weekdaysView = [JTCalendarMonthWeekDaysView new];
         [self addSubview:weekdaysView];
-    }
+    }*/
     
     for(int i = 0; i < WEEKS_TO_DISPLAY; ++i){
         UIView *view = [JTCalendarWeekView new];
