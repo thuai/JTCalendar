@@ -13,6 +13,7 @@
     JTCircleView *circleView;
     UILabel *textLabel;
     JTCircleView *dotView;
+    UIView *bottomLine;
     
     BOOL isSelected;
     
@@ -69,10 +70,16 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
         [self addSubview:textLabel];
     }
     
-    {
+    /* uncommnet beacuse don't need
+     {
         dotView = [JTCircleView new];
         [self addSubview:dotView];
         dotView.hidden = YES;
+    }*/
+    
+    {
+        bottomLine = [UIView new];
+        [self addSubview:bottomLine];
     }
     
     {
@@ -115,6 +122,8 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     dotView.frame = CGRectMake(0, 0, sizeDot, sizeDot);
     dotView.center = CGPointMake(self.frame.size.width / 2., (self.frame.size.height / 2.) + sizeDot * 2.5);
     dotView.layer.cornerRadius = sizeDot / 2.;
+    
+    bottomLine.frame = CGRectMake(0, self.frame.size.height - 0.5, self.frame.size.width, 0.5);
 }
 
 - (void)setDate:(NSDate *)date
@@ -185,7 +194,7 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     circleView.transform = CGAffineTransformIdentity;
     CGAffineTransform tr = CGAffineTransformIdentity;
     CGFloat opacity = 1.;
-    
+   
     if(selected){
         if(!self.isOtherMonth){
             circleView.color = [self.calendarManager.calendarAppearance dayCircleColorSelected];
@@ -305,6 +314,7 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
 {
     textLabel.textAlignment = NSTextAlignmentCenter;
     textLabel.font = self.calendarManager.calendarAppearance.dayTextFont;
+    bottomLine.backgroundColor = [self.calendarManager.calendarAppearance dayBottomLineColor];
     
     [self configureConstraintsForSubviews];
     [self setSelected:isSelected animated:NO];
