@@ -15,6 +15,9 @@
 
 #import "JTCalendarDataCache.h"
 
+extern NSString * const JTCalendarNotificationSelectedDate;
+extern NSString * const JTCalendarKeySelectedDate;
+
 @interface JTCalendar : NSObject<UIScrollViewDelegate>
 
 @property (weak, nonatomic) JTCalendarMenuView *menuMonthsView;
@@ -33,5 +36,7 @@
 
 - (void)loadPreviousMonth;
 - (void)loadNextMonth;
+
+- (void)selectDate:(NSDate *)date;
 
 @end

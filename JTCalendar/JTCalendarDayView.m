@@ -91,6 +91,7 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDaySelected:) name:kJTCalendarDaySelected object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDateSelected:) name:JTCalendarNotificationSelectedDate object:nil];
     }
 }
 
@@ -180,6 +181,14 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     }
     else if(isSelected){
         [self setSelected:NO animated:YES];
+    }
+}
+
+- (void)didDateSelected:(NSNotification *)notification
+{
+    NSDate *dateSelectd = [notification.userInfo objectForKey:JTCalendarKeySelectedDate];
+    if ([self isSameDate:dateSelectd]) {
+        [self didTouch];
     }
 }
 

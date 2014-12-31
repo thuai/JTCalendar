@@ -9,6 +9,9 @@
 
 #define NUMBER_PAGES_LOADED 5 // Must be the same in JTCalendarView, JTCalendarMenuView, JTCalendarContentView
 
+NSString * const JTCalendarNotificationSelectedDate = @"JTCalendarNotificationSelectedDate";
+NSString * const JTCalendarKeySelectedDate = @"JTCalendarKeySelectedDate";
+
 @interface JTCalendar(){
     BOOL cacheLastWeekMode;
     NSUInteger cacheFirstWeekDay;
@@ -226,6 +229,15 @@
     frame.origin.x = frame.size.width * ((NUMBER_PAGES_LOADED / 2) - 1);
     frame.origin.y = 0;
     [self.contentView scrollRectToVisible:frame animated:YES];
+}
+
+- (void)selectDate:(NSDate *)date
+{
+    if (!date) {
+        return;
+    }
+    self.currentDate = date;
+    [[NSNotificationCenter defaultCenter] postNotificationName:JTCalendarNotificationSelectedDate object:nil userInfo:@{ JTCalendarKeySelectedDate: date }];
 }
 
 @end
