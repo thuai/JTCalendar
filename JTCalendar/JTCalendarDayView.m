@@ -195,7 +195,19 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     CGAffineTransform tr = CGAffineTransformIdentity;
     CGFloat opacity = 1.;
    
-    if(selected){
+    if([self isToday]){
+        if(!self.isOtherMonth){
+            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorToday];
+            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorToday];
+            dotView.color = [self.calendarManager.calendarAppearance dayDotColorToday];
+        }
+        else{
+            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorTodayOtherMonth];
+            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorTodayOtherMonth];
+            dotView.color = [self.calendarManager.calendarAppearance dayDotColorTodayOtherMonth];
+        }
+    }
+    else if(selected){
         if(!self.isOtherMonth){
             circleView.color = [self.calendarManager.calendarAppearance dayCircleColorSelected];
             textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorSelected];
@@ -209,18 +221,6 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
         
         circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
         tr = CGAffineTransformIdentity;
-    }
-    else if([self isToday]){
-        if(!self.isOtherMonth){
-            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorToday];
-            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorToday];
-            dotView.color = [self.calendarManager.calendarAppearance dayDotColorToday];
-        }
-        else{
-            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorTodayOtherMonth];
-            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorTodayOtherMonth];
-            dotView.color = [self.calendarManager.calendarAppearance dayDotColorTodayOtherMonth];
-        }
     }
     else{
         if(!self.isOtherMonth){
