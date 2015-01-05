@@ -12,7 +12,7 @@
 #import "JTCalendarMonthView.h"
 #import "JTCalendarWeekView.h"
 
-#define NUMBER_PAGES_LOADED 5 // Must be the same in JTCalendarView, JTCalendarMenuView, JTCalendarContentView
+#define NUMBER_PAGES_LOADED 3 // Must be the same in JTCalendarView, JTCalendarMenuView, JTCalendarContentView
 
 @interface JTCalendarContentView(){
     NSMutableArray *monthsViews;
@@ -53,6 +53,7 @@
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
     self.pagingEnabled = YES;
+    self.bounces = NO;
     
     for(int i = 0; i < NUMBER_PAGES_LOADED; ++i){
         JTCalendarMonthView *monthView = [JTCalendarMonthView new];

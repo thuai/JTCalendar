@@ -7,7 +7,7 @@
 
 #import "JTCalendar.h"
 
-#define NUMBER_PAGES_LOADED 5 // Must be the same in JTCalendarView, JTCalendarMenuView, JTCalendarContentView
+#define NUMBER_PAGES_LOADED 3 // Must be the same in JTCalendarView, JTCalendarMenuView, JTCalendarContentView
 
 NSString * const JTCalendarNotificationSelectedDate = @"JTCalendarNotificationSelectedDate";
 NSString * const JTCalendarKeySelectedDate = @"JTCalendarKeySelectedDate";
@@ -137,17 +137,25 @@ NSString * const JTCalendarKeySelectedDate = @"JTCalendarKeySelectedDate";
     else if(scrollView == self.menuMonthsView){
         self.contentView.scrollEnabled = NO;
     }
+ 
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    scrollView.userInteractionEnabled = NO;
 }
 
 // Use for scroll with scrollRectToVisible or setContentOffset
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     [self updatePage];
+    self.contentView.userInteractionEnabled = YES;
+
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self updatePage];
+    self.contentView.userInteractionEnabled = YES;
 }
 
 - (void)updatePage
@@ -189,6 +197,7 @@ NSString * const JTCalendarKeySelectedDate = @"JTCalendarKeySelectedDate";
             [self.dataSource calendarDidLoadNextPage];
         }
     }
+    
 }
 
 - (void)repositionViews
